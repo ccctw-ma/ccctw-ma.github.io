@@ -270,8 +270,7 @@ html[data-theme="dark"] .profile-meta {
 .project-card {
   position: relative;
   isolation: isolate;
-  overflow: hidden;
-  min-height: 20rem;
+  min-height: 19rem;
   border-color: color-mix(in srgb, var(--border) 82%, transparent);
   background:
     linear-gradient(145deg, rgba(255, 255, 255, 0.92), rgba(255, 251, 235, 0.72)),
@@ -283,19 +282,6 @@ html[data-theme="dark"] .profile-meta {
   -webkit-backdrop-filter: blur(20px);
 }
 
-@media (min-width: 768px) {
-  .project-card {
-    aspect-ratio: 1 / 1.18;
-    min-height: 20rem;
-  }
-}
-
-@media (min-width: 1280px) {
-  .project-card {
-    aspect-ratio: 1 / 1.06;
-  }
-}
-
 html[data-theme="dark"] .project-card {
   background:
     linear-gradient(145deg, rgba(24, 24, 27, 0.88), rgba(15, 23, 42, 0.64)),
@@ -303,31 +289,6 @@ html[data-theme="dark"] .project-card {
   box-shadow:
     0 26px 72px rgba(0, 0, 0, 0.36),
     inset 0 1px 0 rgba(255, 255, 255, 0.08);
-}
-
-.project-card::before {
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  content: "";
-  background:
-    linear-gradient(
-      115deg,
-      transparent 0 28%,
-      rgba(255, 255, 255, 0.72) 42%,
-      transparent 56%
-    ),
-    radial-gradient(
-      circle at 88% 14%,
-      color-mix(in srgb, var(--accent) 20%, transparent),
-      transparent 24rem
-    );
-  opacity: 0;
-  transform: translateX(-18%);
-  transition:
-    opacity 260ms ease,
-    transform 520ms cubic-bezier(0.19, 1, 0.22, 1);
 }
 
 .project-card:hover {
@@ -343,11 +304,7 @@ html[data-theme="dark"] .project-card:hover {
     inset 0 1px 0 rgba(255, 255, 255, 0.12);
 }
 
-.project-card:hover::before {
-  opacity: 1;
-  transform: translateX(0);
-}
-
+.project-name,
 .project-name-link {
   overflow-wrap: anywhere;
   word-break: break-word;
@@ -355,10 +312,9 @@ html[data-theme="dark"] .project-card:hover {
 }
 
 .project-description {
-  display: -webkit-box;
-  overflow: hidden;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 1;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  hyphens: auto;
 }
 
 .project-number {
@@ -369,10 +325,9 @@ html[data-theme="dark"] .project-card:hover {
 
 .project-topic {
   max-width: 100%;
-  overflow: hidden;
   color: var(--muted);
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  overflow-wrap: anywhere;
+  word-break: break-word;
   background: color-mix(in srgb, var(--fg) 5%, transparent);
 }
 
@@ -384,9 +339,8 @@ html[data-theme="dark"] .project-card:hover {
 
 .project-meta > * {
   min-width: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .project-demo-link {

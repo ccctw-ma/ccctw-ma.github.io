@@ -5,7 +5,7 @@ export default function ProjectsPage() {
   const projects = getSelectedProjects();
 
   return (
-    <main className="project-stage relative overflow-hidden px-6 pt-28">
+    <main className="project-stage relative px-6 pt-28">
       <section className="mx-auto max-w-6xl">
         <h1 className="sr-only">
           <span className="i18n-en">Selected projects</span>

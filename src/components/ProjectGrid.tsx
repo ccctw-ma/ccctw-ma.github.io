@@ -53,22 +53,22 @@ export default function ProjectGrid({ projects }: ProjectGridProps) {
   }
 
   return (
-    <div className="project-grid grid gap-5 md:grid-cols-2">
+    <div className="project-grid grid items-stretch gap-5 md:grid-cols-2">
       {projects.map((project, index) => {
         const note = getCaseNote(project);
 
         return (
           <article
             key={project.id}
-            className="project-card group flex flex-col rounded-[2rem] border p-5 transition duration-300"
+            className="project-card group flex h-full flex-col rounded-[2rem] border p-5 transition duration-300"
           >
-            <div className="flex min-h-0 items-start justify-between gap-4">
-              <div className="min-w-0">
-                <p className="text-accent mb-3 truncate text-xs font-black uppercase tracking-[0.28em]">
+            <div className="flex items-start justify-between gap-4">
+              <div className="min-w-0 flex-1">
+                <p className="text-accent mb-3 text-xs font-black uppercase tracking-[0.22em]">
                   <span className="i18n-en">{note.eyebrow}</span>
                   <span className="i18n-zh">{note.eyebrowZh}</span>
                 </p>
-                <h2 className="project-name text-main flex flex-wrap items-center gap-2 text-2xl font-black leading-[0.95] tracking-[-0.055em] lg:text-3xl">
+                <h2 className="project-name text-main text-2xl font-black leading-tight tracking-[-0.045em] lg:text-[1.7rem]">
                   <a
                     href={project.url}
                     target="_blank"
@@ -93,7 +93,7 @@ export default function ProjectGrid({ projects }: ProjectGridProps) {
               </div>
             </div>
 
-            <div className="mt-auto flex min-h-0 flex-wrap items-center gap-2 pt-5">
+            <div className="mt-6 flex flex-wrap items-center gap-2">
               <span className="accent-pill rounded-full border px-3 py-1 text-xs font-black">
                 {project.language}
               </span>
@@ -111,7 +111,7 @@ export default function ProjectGrid({ projects }: ProjectGridProps) {
               ) : null}
             </div>
 
-            <div className="project-meta mt-6 grid gap-3 rounded-[1.35rem] p-3 text-xs font-black sm:grid-cols-3">
+            <div className="project-meta mt-auto flex flex-wrap gap-3 rounded-[1.35rem] p-3 text-xs font-black">
               <span aria-label={`${project.name} stars`}>Stars {project.stars}</span>
               <span>Forks {project.forks}</span>
               {project.license ? <span>{project.license}</span> : <span>No License</span>}
