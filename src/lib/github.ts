@@ -11,6 +11,11 @@ export type GitHubRepo = {
   archived: boolean;
   pushed_at: string;
   homepage: string | null;
+  private?: boolean;
+  license?: {
+    name: string;
+    spdx_id: string;
+  } | null;
   topics?: string[];
 };
 
@@ -130,7 +135,8 @@ export function normalizeRepo(repo: GitHubRepo): OpenSourceProject {
     language: repo.language || "Code",
     stars: repo.stargazers_count,
     forks: repo.forks_count,
-    visibility: "Public",
+    visibility: repo.private ? "Private" : "Public",
+    license: repo.license?.spdx_id || repo.license?.name || undefined,
     topics: repo.topics ?? [],
     updatedAt: repo.pushed_at,
     updatedLabel: `Updated ${new Date(repo.pushed_at).toLocaleDateString("en")}`,
@@ -187,4 +193,41 @@ export async function fetchOpenSourceProjects(
 
 export function getSelectedProjects(): OpenSourceProject[] {
   return SELECTED_PROJECTS;
+}
+
+export async function fetchLatestSelectedProjects(
+  fetcher: FetchLike = fetch,
+): Promise<OpenSourceProject[]> {
+  const latestProjects = await Promise.all(
+    SELECTED_PROJECTS.map(async (project) => {
+      try {
+        const response = await fetcher(
+          `https://api.github.com/repos/${GITHUB_USERNAME}/${project.name}`,
+          {
+            headers: {
+              Accept: "application/vnd.github+json",
+              "X-GitHub-Api-Version": "2022-11-28",
+            },
+          },
+        );
+
+        if (!response.ok) {
+          return project;
+        }
+
+        const mergedProject: OpenSourceProject = {
+          ...project,
+          ...normalizeRepo((await response.json()) as GitHubRepo),
+          descriptionZh: project.descriptionZh,
+          visibility: project.visibility === "Private" ? "Private" : "Public",
+        };
+
+        return mergedProject;
+      } catch {
+        return project;
+      }
+    }),
+  );
+
+  return latestProjects;
 }

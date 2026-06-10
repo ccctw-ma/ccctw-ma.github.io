@@ -1,7 +1,7 @@
 export const PROFILE = {
   name: "Ccctw Ma",
   handle: "ccctw-ma",
-  role: "Front End Engineer (Postgraduate/Software)",
+  role: "Frontend Engineer at ByteDance Douyin",
   location: "Beijing, China",
   avatarUrl: "https://avatars.githubusercontent.com/u/50932721?v=4",
   githubUrl: "https://github.com/ccctw-ma",
@@ -40,9 +40,10 @@ export const BIO_TIMELINE = [
   },
   {
     year: "Now",
-    text: "Studying for a Master's degree in Software Engineering at BUPT (Beijing University of Posts and Telecommunications).",
-    textZh: "正在北京邮电大学攻读软件工程硕士学位。",
-    href: "http://www.bupt.edu.cn/",
+    text: "Graduated from Beijing University of Posts and Telecommunications in Computer Technology in 2024, and have worked in ByteDance Douyin since 2024.",
+    textZh:
+      "2024 年毕业于北京邮电大学计算机技术专业，2024 年至今在字节跳动抖音部门工作。",
+    href: "https://www.douyin.com/",
   },
 ];
 

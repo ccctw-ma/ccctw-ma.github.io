@@ -1,4 +1,4 @@
-import ProjectGrid from "@/components/ProjectGrid";
+import ProjectList from "@/components/ProjectList";
 import { getSelectedProjects } from "@/lib/github";
 
 export default function ProjectsPage() {
@@ -15,14 +15,8 @@ export default function ProjectsPage() {
             <span className="i18n-en">Selected projects.</span>
             <span className="i18n-zh">精选项目。</span>
           </h1>
-          <p className="text-muted mt-5 text-lg leading-8">
-            <span className="i18n-en">
-              This page keeps only the projects you selected from the screenshots.
-            </span>
-            <span className="i18n-zh block">这里只保留截图中指定的项目。</span>
-          </p>
         </div>
-        <ProjectGrid projects={projects} />
+        <ProjectList initialProjects={projects} />
       </section>
     </main>
   );

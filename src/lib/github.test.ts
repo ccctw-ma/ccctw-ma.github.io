@@ -1,6 +1,7 @@
 import { describe, expect, it, vi } from "vitest";
 import {
   FALLBACK_PROJECTS,
+  fetchLatestSelectedProjects,
   fetchOpenSourceProjects,
   getSelectedProjects,
   normalizeRepo,
@@ -33,6 +34,7 @@ describe("normalizeRepo", () => {
       normalizeRepo(
         makeRepo({
           homepage: "https://demo.example.com",
+          license: { name: "MIT License", spdx_id: "MIT" },
           topics: ["nextjs"],
           stargazers_count: 8,
           forks_count: 2,
@@ -46,6 +48,7 @@ describe("normalizeRepo", () => {
       stars: 8,
       forks: 2,
       visibility: "Public",
+      license: "MIT",
       topics: ["nextjs"],
     });
   });
@@ -174,5 +177,57 @@ describe("getSelectedProjects", () => {
       "claude-code-2188",
       "ccctw-music",
     ]);
+  });
+});
+
+describe("fetchLatestSelectedProjects", () => {
+  it("fetches every selected repository and merges fresh GitHub metadata", async () => {
+    const fetcher = vi.fn().mockImplementation(async (url: string) => ({
+      ok: true,
+      json: async () =>
+        makeRepo({
+          id: url.includes("flamingo") ? 2 : 99,
+          name: url.split("/").at(-1) ?? "repo",
+          description: "Fresh description",
+          language: "Rust",
+          stargazers_count: 42,
+          private: false,
+          license: { name: "MIT License", spdx_id: "MIT" },
+          pushed_at: "2026-06-10T00:00:00Z",
+        }),
+    }));
+
+    const latestProjects = await fetchLatestSelectedProjects(fetcher);
+
+    expect(fetcher).toHaveBeenCalledTimes(5);
+    expect(fetcher).toHaveBeenCalledWith(
+      "https://api.github.com/repos/ccctw-ma/GG-Fund",
+      expect.any(Object),
+    );
+    expect(latestProjects[1]).toMatchObject({
+      name: "flamingo",
+      description: "Fresh description",
+      descriptionZh: "Chrome 代理扩展",
+      language: "Rust",
+      stars: 42,
+      license: "MIT",
+      visibility: "Public",
+    });
+  });
+
+  it("keeps fallback metadata when a repository request fails", async () => {
+    const fetcher = vi.fn().mockResolvedValue({ ok: false } satisfies Partial<Response>);
+
+    await expect(fetchLatestSelectedProjects(fetcher)).resolves.toEqual(
+      getSelectedProjects(),
+    );
+  });
+
+  it("keeps fallback metadata when a repository request throws", async () => {
+    const fetcher = vi.fn().mockRejectedValue(new Error("network"));
+
+    await expect(fetchLatestSelectedProjects(fetcher)).resolves.toEqual(
+      getSelectedProjects(),
+    );
   });
 });
