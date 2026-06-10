@@ -7,9 +7,9 @@ export const PROFILE = {
   githubUrl: "https://github.com/ccctw-ma",
   sourceUrl: "https://github.com/ccctw-ma/ccctw-ma.github.io",
   intro:
-    "I am currently pursuing a Master's degree in Software Engineering, and I am very interested in the field of front-end development. I am passionate about learning new front-end knowledge and using coding to build the products I envision. My ultimate goal is to become a full-stack engineer and have the opportunity to share my knowledge with others.",
+    "I am a full-stack engineer with a strong interest in the software field. I am passionate about learning new knowledge and using code to build the products I envision, with opportunities to share my work with others.",
   introZh:
-    "我目前正在攻读软件工程硕士学位，并且对前端开发领域非常感兴趣。我热衷于学习新的前端知识，并用代码构建我所设想的产品。我的最终目标是成为一名全栈工程师，并有机会与他人分享我的知识。",
+    "我是一名全栈工程师，对软件领域非常感兴趣，热衷于学习新的知识，并用代码构建我所设想的产品，并有机会与他人分享我的作品。",
 };
 
 export const HIGHLIGHTS = [
@@ -39,10 +39,15 @@ export const BIO_TIMELINE = [
     href: "http://www.zzu.edu.cn/",
   },
   {
+    year: "2024",
+    text: "Graduated from Beijing University of Posts and Telecommunications, majoring in Computer Technology.",
+    textZh: "从北京邮电大学计算机技术专业毕业。",
+    href: "https://www.bupt.edu.cn/",
+  },
+  {
     year: "Now",
-    text: "Graduated from Beijing University of Posts and Telecommunications in Computer Technology in 2024, and have worked in ByteDance Douyin since 2024.",
-    textZh:
-      "2024 年毕业于北京邮电大学计算机技术专业，2024 年至今在字节跳动抖音部门工作。",
+    text: "Working in ByteDance Douyin.",
+    textZh: "目前在字节跳动抖音部门工作。",
     href: "https://www.douyin.com/",
   },
 ];

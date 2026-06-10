@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { BIO_TIMELINE, HIGHLIGHTS, PROFILE, SOCIAL_LINKS } from "@/lib/profile";
+import { BIO_TIMELINE, PROFILE, SOCIAL_LINKS } from "@/lib/profile";
 
 export default function Home() {
   return (
@@ -58,20 +58,6 @@ export default function Home() {
           </div>
         </section>
 
-        <section
-          className="mt-14 grid gap-4 md:grid-cols-4"
-          aria-label="Engineering highlights"
-        >
-          {HIGHLIGHTS.map((item) => (
-            <div
-              key={item}
-              className="site-card text-main rounded-3xl border p-5 text-sm font-bold leading-6"
-            >
-              {item}
-            </div>
-          ))}
-        </section>
-
         <section className="mt-20 grid gap-10 md:grid-cols-[0.7fr_1.3fr]">
           <div>
             <h2 className="text-main text-3xl font-black tracking-tight">Bio</h2>
@@ -82,20 +68,23 @@ export default function Home() {
               <span className="i18n-zh">来自原个人主页的履历时间线。</span>
             </p>
           </div>
-          <div className="space-y-4">
+          <div className="relative space-y-5 pl-7 before:absolute before:left-2 before:top-4 before:h-[calc(100%-2rem)] before:w-px before:bg-[var(--border)]">
             {BIO_TIMELINE.map((item) => (
               <a
                 key={item.year}
                 href={item.href}
                 target="_blank"
                 rel="noreferrer"
-                className="site-card grid gap-3 rounded-3xl border p-5 hover:border-orange-300/60 md:grid-cols-[5rem_1fr]"
+                className="site-card relative block rounded-3xl border p-5 transition duration-200 hover:-translate-y-0.5 hover:border-orange-300/60"
               >
-                <span className="text-accent font-black">{item.year}</span>
-                <span className="text-main">
-                  <span className="i18n-en">{item.text}</span>
-                  <span className="i18n-zh">{item.textZh}</span>
-                </span>
+                <span className="absolute -left-[1.68rem] top-7 h-4 w-4 rounded-full border-2 border-[var(--accent)] bg-[var(--bg)] shadow-[0_0_0_6px_var(--bg)]" />
+                <div className="grid gap-3 md:grid-cols-[5rem_1fr] md:items-start">
+                  <span className="text-accent font-black">{item.year}</span>
+                  <span className="text-main leading-7">
+                    <span className="i18n-en">{item.text}</span>
+                    <span className="i18n-zh">{item.textZh}</span>
+                  </span>
+                </div>
               </a>
             ))}
           </div>
