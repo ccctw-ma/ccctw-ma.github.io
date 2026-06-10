@@ -4,15 +4,16 @@ import { BIO_TIMELINE, PROFILE } from "@/lib/profile";
 
 export default function Home() {
   return (
-    <main className="px-6 pt-28">
+    <main className="relative overflow-hidden px-6 pt-28">
+      <div className="hero-ambient" aria-hidden="true" />
       <article className="mx-auto max-w-5xl">
-        <section className="grid min-h-[58vh] items-center gap-10 md:grid-cols-[1.15fr_0.85fr]">
-          <div className="site-card rounded-[2rem] border p-6 md:p-8">
+        <section className="relative grid min-h-[58vh] items-center gap-10 md:grid-cols-[1.12fr_0.88fr]">
+          <div className="hero-panel rounded-[2.25rem] border p-6 md:p-9">
             <p className="accent-pill mb-5 w-fit rounded-full border px-4 py-2 text-xs font-black uppercase tracking-[0.35em]">
               <span className="i18n-en">Personal Website</span>
               <span className="i18n-zh">个人主页</span>
             </p>
-            <h1 className="text-main max-w-3xl text-4xl font-black leading-[0.98] tracking-[-0.055em] md:text-6xl">
+            <h1 className="hero-title text-main max-w-3xl text-4xl font-black leading-[0.96] tracking-[-0.065em] md:text-6xl">
               <span className="i18n-en">A short self introduction of me.</span>
               <span className="i18n-zh">关于我的简短自我介绍。</span>
             </h1>
@@ -24,19 +25,21 @@ export default function Home() {
               <ProjectTransitionLink href="/projects" />
             </div>
           </div>
-          <div className="site-card relative mx-auto w-full max-w-sm rounded-[2rem] border p-6 shadow-2xl shadow-black/20">
+          <div className="profile-showcase relative mx-auto w-full max-w-sm rounded-[2.5rem] border p-5">
             <Image
-              className="rounded-3xl border border-white/10"
+              className="profile-image rounded-[1.75rem]"
               width={320}
               height={320}
               src={PROFILE.avatarUrl}
               alt="Ccctw Ma avatar"
               priority
             />
-            <div className="mt-6">
-              <h2 className="text-main text-2xl font-black">{PROFILE.name}</h2>
-              <p className="text-accent mt-1 text-sm font-semibold">{PROFILE.role}</p>
-              <p className="text-subtle mt-1 text-sm">{PROFILE.location}</p>
+            <div className="profile-meta mt-6 rounded-[1.5rem] p-4">
+              <h2 className="text-main text-2xl font-black tracking-[-0.04em]">
+                {PROFILE.name}
+              </h2>
+              <p className="text-accent mt-1 text-sm font-black">{PROFILE.role}</p>
+              <p className="text-subtle mt-1 text-sm font-semibold">{PROFILE.location}</p>
             </div>
           </div>
         </section>

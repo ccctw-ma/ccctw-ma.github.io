@@ -23,9 +23,10 @@ describe("ProjectTransitionLink", () => {
 
     fireEvent.click(screen.getByRole("link", { name: /View selected projects/ }));
 
+    expect(screen.getByText("Opening selected projects")).toBeInTheDocument();
     expect(push).toHaveBeenCalledWith("/projects");
     expect(document.documentElement).not.toHaveClass("page-transition-out");
-    expect(setTimeoutSpy).toHaveBeenCalledWith(expect.any(Function), 180);
+    expect(setTimeoutSpy).toHaveBeenCalledWith(expect.any(Function), 420);
     setTimeoutSpy.mockRestore();
   });
 });

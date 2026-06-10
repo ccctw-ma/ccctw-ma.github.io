@@ -22,19 +22,38 @@ export default function ProjectTransitionLink({ href }: ProjectTransitionLinkPro
     window.setTimeout(() => {
       router.push(href);
       document.documentElement.classList.remove("page-transition-out");
-    }, 180);
+    }, 420);
   }
 
   return (
-    <a
-      href={href}
-      onClick={goToProjects}
-      className={`project-cta rounded-full bg-orange-300 px-4 py-2 text-sm font-black text-zinc-950 hover:bg-orange-200 ${
-        isLeaving ? "project-cta-loading" : ""
-      }`}
-    >
-      <span className="i18n-en">View selected projects</span>
-      <span className="i18n-zh">查看精选项目</span>
-    </a>
+    <>
+      <a
+        href={href}
+        onClick={goToProjects}
+        className={`project-cta group inline-flex items-center gap-3 rounded-full px-5 py-3 text-sm font-black text-zinc-950 ${
+          isLeaving ? "project-cta-loading" : ""
+        }`}
+      >
+        <span>
+          <span className="i18n-en">View selected projects</span>
+          <span className="i18n-zh">查看精选项目</span>
+        </span>
+        <span
+          aria-hidden="true"
+          className="project-cta-arrow grid h-7 w-7 place-items-center rounded-full bg-zinc-950 text-orange-200"
+        >
+          →
+        </span>
+      </a>
+      {isLeaving ? (
+        <div className="project-route-overlay" aria-hidden="true">
+          <div className="project-route-orb" />
+          <p>
+            <span className="i18n-en">Opening selected projects</span>
+            <span className="i18n-zh">正在打开精选项目</span>
+          </p>
+        </div>
+      ) : null}
+    </>
   );
 }
