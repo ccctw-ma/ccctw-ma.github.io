@@ -14,15 +14,13 @@ function applyPreferences(theme: Theme, lang: Lang) {
 }
 
 export default function PreferenceControls() {
-  const [theme, setTheme] = useState<Theme>("dark");
+  const [theme, setTheme] = useState<Theme>("light");
   const [lang, setLang] = useState<Lang>("en");
 
   useEffect(() => {
     const storedTheme = window.localStorage.getItem(THEME_KEY) as Theme | null;
     const storedLang = window.localStorage.getItem(LANG_KEY) as Lang | null;
-    const preferredTheme: Theme =
-      storedTheme ??
-      (window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+    const preferredTheme: Theme = storedTheme ?? "light";
     const preferredLang: Lang = storedLang ?? "en";
 
     setTheme(preferredTheme);

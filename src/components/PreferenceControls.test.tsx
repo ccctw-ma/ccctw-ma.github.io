@@ -8,18 +8,21 @@ describe("PreferenceControls", () => {
     const user = userEvent.setup();
     render(<PreferenceControls />);
 
+    expect(document.documentElement.dataset.lang).toBe("en");
+    expect(document.documentElement.dataset.theme).toBe("light");
+
     await user.click(screen.getByRole("button", { name: "Toggle language" }));
     expect(document.documentElement.dataset.lang).toBe("zh");
     expect(window.localStorage.getItem("ccctw-lang")).toBe("zh");
 
     await user.click(screen.getByRole("button", { name: "Toggle color theme" }));
-    expect(document.documentElement.dataset.theme).toBe("light");
-    expect(window.localStorage.getItem("ccctw-theme")).toBe("light");
+    expect(document.documentElement.dataset.theme).toBe("dark");
+    expect(window.localStorage.getItem("ccctw-theme")).toBe("dark");
   });
 
-  it("loads stored preferences and toggles back to English and dark", async () => {
+  it("loads stored preferences and toggles back to English and light", async () => {
     window.localStorage.setItem("ccctw-lang", "zh");
-    window.localStorage.setItem("ccctw-theme", "light");
+    window.localStorage.setItem("ccctw-theme", "dark");
     const user = userEvent.setup();
 
     render(<PreferenceControls />);
@@ -28,15 +31,15 @@ describe("PreferenceControls", () => {
     await user.click(screen.getByRole("button", { name: "Toggle color theme" }));
 
     expect(document.documentElement.dataset.lang).toBe("en");
-    expect(document.documentElement.dataset.theme).toBe("dark");
+    expect(document.documentElement.dataset.theme).toBe("light");
   });
 
-  it("uses system light preference when no theme is stored", () => {
+  it("defaults to light even when the system prefers dark", () => {
     Object.defineProperty(window, "matchMedia", {
       writable: true,
       value: vi.fn(() => ({
-        matches: true,
-        media: "(prefers-color-scheme: light)",
+        matches: false,
+        media: "(prefers-color-scheme: dark)",
         onchange: null,
         addListener: () => undefined,
         removeListener: () => undefined,

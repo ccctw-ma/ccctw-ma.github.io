@@ -6,7 +6,7 @@ afterEach(() => {
   cleanup();
   window.localStorage.clear();
   document.documentElement.dataset.lang = "en";
-  document.documentElement.dataset.theme = "dark";
+  document.documentElement.dataset.theme = "light";
 });
 
 Object.defineProperty(window, "matchMedia", {
