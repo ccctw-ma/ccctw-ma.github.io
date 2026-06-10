@@ -45,7 +45,7 @@ export const SELECTED_PROJECTS: OpenSourceProject[] = [
   {
     id: 1,
     name: "GG-Fund",
-    description: "A private quantitative research workspace for strategy experiments.",
+    description: "Quant research workspace.",
     descriptionZh: "用于策略实验的私有量化研究工作台。",
     url: "https://github.com/ccctw-ma/GG-Fund",
     language: "TypeScript",
@@ -61,7 +61,7 @@ export const SELECTED_PROJECTS: OpenSourceProject[] = [
   {
     id: 2,
     name: "flamingo",
-    description: "A browser extension for lightweight Chrome proxy switching.",
+    description: "Chrome proxy switcher.",
     descriptionZh: "用于轻量化 Chrome 代理切换的浏览器扩展。",
     url: "https://github.com/ccctw-ma/flamingo",
     language: "TypeScript",
@@ -77,7 +77,7 @@ export const SELECTED_PROJECTS: OpenSourceProject[] = [
   {
     id: 3,
     name: "clipy-rs",
-    description: "A Rust utility experiment around clipboard productivity.",
+    description: "Rust clipboard utility.",
     descriptionZh: "围绕剪贴板效率构建的 Rust 工具实验。",
     url: "https://github.com/ccctw-ma/clipy-rs",
     language: "Rust",
@@ -93,7 +93,7 @@ export const SELECTED_PROJECTS: OpenSourceProject[] = [
   {
     id: 4,
     name: "claude-code-2188",
-    description: "A source reconstruction study of claude-code style agent workflows.",
+    description: "AI coding agent study.",
     descriptionZh: "复刻 claude-code 源码",
     url: "https://github.com/ccctw-ma/claude-code-2188",
     language: "TypeScript",
@@ -109,7 +109,7 @@ export const SELECTED_PROJECTS: OpenSourceProject[] = [
   {
     id: 5,
     name: "ccctw-music",
-    description: "A music website can obtain music resources from various platforms.",
+    description: "Multi-source music site.",
     descriptionZh: "一个可从多个平台获取音乐资源的音乐网站。",
     url: "https://github.com/ccctw-ma/ccctw-music",
     language: "JavaScript",

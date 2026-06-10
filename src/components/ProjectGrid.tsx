@@ -9,39 +9,27 @@ const projectCaseNotes: Record<
   {
     eyebrow: string;
     eyebrowZh: string;
-    impact: string;
-    impactZh: string;
   }
 > = {
   "GG-Fund": {
-    eyebrow: "Quant Lab",
+    eyebrow: "Quant",
     eyebrowZh: "量化实验室",
-    impact: "Strategy tooling, data signals, and private research workflow.",
-    impactZh: "策略工具、数据信号与私有研究工作流。",
   },
   flamingo: {
-    eyebrow: "Browser Tooling",
+    eyebrow: "Browser",
     eyebrowZh: "浏览器工具",
-    impact: "A Chrome extension focused on cleaner proxy switching.",
-    impactZh: "聚焦更清爽代理切换体验的 Chrome 扩展。",
   },
   "clipy-rs": {
-    eyebrow: "Rust Utility",
+    eyebrow: "Rust",
     eyebrowZh: "Rust 工具",
-    impact: "A compact systems-side experiment around clipboard productivity.",
-    impactZh: "围绕剪贴板效率的小型系统侧实验。",
   },
   "claude-code-2188": {
-    eyebrow: "Agent Study",
+    eyebrow: "Agent",
     eyebrowZh: "Agent 研究",
-    impact: "Source reading and reconstruction practice for AI coding workflows.",
-    impactZh: "面向 AI 编码工作流的源码阅读与复刻实践。",
   },
   "ccctw-music": {
-    eyebrow: "Music Product",
+    eyebrow: "Music",
     eyebrowZh: "音乐产品",
-    impact: "A multi-source music experience designed as a complete web product.",
-    impactZh: "以完整 Web 产品方式构建的多源音乐体验。",
   },
 };
 
@@ -50,8 +38,6 @@ function getCaseNote(project: OpenSourceProject) {
     projectCaseNotes[project.name] ?? {
       eyebrow: "Engineering Case",
       eyebrowZh: "工程案例",
-      impact: "A selected project with implementation details and live repository data.",
-      impactZh: "一个带有实现细节和实时仓库数据的精选项目。",
     }
   );
 }
@@ -74,15 +60,15 @@ export default function ProjectGrid({ projects }: ProjectGridProps) {
         return (
           <article
             key={project.id}
-            className="project-card group flex flex-col rounded-[2rem] border p-5 transition duration-300 md:aspect-square"
+            className="project-card group flex flex-col rounded-[2rem] border p-5 transition duration-300"
           >
-            <div className="flex items-start justify-between gap-4">
+            <div className="flex min-h-0 items-start justify-between gap-4">
               <div className="min-w-0">
-                <p className="text-accent mb-4 text-xs font-black uppercase tracking-[0.28em]">
+                <p className="text-accent mb-3 truncate text-xs font-black uppercase tracking-[0.28em]">
                   <span className="i18n-en">{note.eyebrow}</span>
                   <span className="i18n-zh">{note.eyebrowZh}</span>
                 </p>
-                <h2 className="text-main flex flex-wrap items-center gap-2 text-3xl font-black leading-none tracking-[-0.055em]">
+                <h2 className="project-name text-main flex flex-wrap items-center gap-2 text-2xl font-black leading-[0.95] tracking-[-0.055em] lg:text-3xl">
                   <a
                     href={project.url}
                     target="_blank"
@@ -92,15 +78,11 @@ export default function ProjectGrid({ projects }: ProjectGridProps) {
                     {project.name}
                   </a>
                 </h2>
-                <p className="project-description text-muted mt-4 max-w-2xl text-sm font-semibold leading-7">
+                <p className="project-description text-muted mt-4 max-w-2xl text-sm font-semibold leading-6">
                   <span className="i18n-en">{project.description}</span>
                   <span className="i18n-zh">
                     {project.descriptionZh ?? project.description}
                   </span>
-                </p>
-                <p className="project-impact mt-4 max-w-2xl rounded-2xl px-4 py-3 text-sm font-bold leading-6">
-                  <span className="i18n-en">{note.impact}</span>
-                  <span className="i18n-zh">{note.impactZh}</span>
                 </p>
               </div>
               <div className="project-number shrink-0 rounded-2xl px-3 py-2 text-right">
@@ -111,7 +93,7 @@ export default function ProjectGrid({ projects }: ProjectGridProps) {
               </div>
             </div>
 
-            <div className="mt-auto flex flex-wrap items-center gap-2 pt-6">
+            <div className="mt-auto flex min-h-0 flex-wrap items-center gap-2 pt-5">
               <span className="accent-pill rounded-full border px-3 py-1 text-xs font-black">
                 {project.language}
               </span>
