@@ -74,9 +74,7 @@ export default function ProjectGrid({ projects }: ProjectGridProps) {
         return (
           <article
             key={project.id}
-            className={`project-card group rounded-[2rem] border p-5 transition duration-300 ${
-              index === 0 ? "project-card-featured md:col-span-2" : ""
-            }`}
+            className="project-card group flex flex-col rounded-[2rem] border p-5 transition duration-300 md:aspect-square"
           >
             <div className="flex items-start justify-between gap-4">
               <div className="min-w-0">
@@ -94,7 +92,7 @@ export default function ProjectGrid({ projects }: ProjectGridProps) {
                     {project.name}
                   </a>
                 </h2>
-                <p className="text-muted mt-4 max-w-2xl text-sm font-semibold leading-7">
+                <p className="project-description text-muted mt-4 max-w-2xl text-sm font-semibold leading-7">
                   <span className="i18n-en">{project.description}</span>
                   <span className="i18n-zh">
                     {project.descriptionZh ?? project.description}
@@ -113,7 +111,7 @@ export default function ProjectGrid({ projects }: ProjectGridProps) {
               </div>
             </div>
 
-            <div className="mt-6 flex flex-wrap items-center gap-2">
+            <div className="mt-auto flex flex-wrap items-center gap-2 pt-6">
               <span className="accent-pill rounded-full border px-3 py-1 text-xs font-black">
                 {project.language}
               </span>

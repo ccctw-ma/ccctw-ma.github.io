@@ -263,104 +263,6 @@ html[data-theme="dark"] .profile-meta {
   transform: translateX(-50%);
 }
 
-.project-orbit {
-  position: absolute;
-  top: 8rem;
-  right: max(1.5rem, calc((100vw - 72rem) / 2));
-  width: 19rem;
-  height: 19rem;
-  pointer-events: none;
-  border: 1px solid color-mix(in srgb, var(--accent) 20%, transparent);
-  border-radius: 999px;
-  opacity: 0.8;
-}
-
-.project-orbit::before,
-.project-orbit::after {
-  position: absolute;
-  inset: 2.25rem;
-  border: 1px solid color-mix(in srgb, var(--fg) 10%, transparent);
-  border-radius: inherit;
-  content: "";
-}
-
-.project-orbit::after {
-  inset: 5.1rem;
-  background: color-mix(in srgb, var(--accent) 10%, transparent);
-}
-
-.project-hero {
-  position: relative;
-  overflow: hidden;
-  border-color: color-mix(in srgb, var(--border) 86%, transparent);
-  background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.86), rgba(255, 247, 237, 0.66)),
-    color-mix(in srgb, var(--surface) 92%, transparent);
-  box-shadow:
-    0 38px 110px rgba(15, 23, 42, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(22px);
-  -webkit-backdrop-filter: blur(22px);
-}
-
-html[data-theme="dark"] .project-hero {
-  background:
-    linear-gradient(135deg, rgba(24, 24, 27, 0.9), rgba(12, 74, 110, 0.18)),
-    color-mix(in srgb, var(--surface) 92%, transparent);
-}
-
-.project-hero::after {
-  position: absolute;
-  right: -7rem;
-  bottom: -11rem;
-  width: 28rem;
-  height: 28rem;
-  pointer-events: none;
-  border-radius: 999px;
-  content: "";
-  background: radial-gradient(
-    circle,
-    color-mix(in srgb, var(--accent) 20%, transparent),
-    transparent 68%
-  );
-}
-
-.project-title {
-  text-wrap: balance;
-}
-
-.project-hero-panel {
-  border: 1px solid color-mix(in srgb, var(--border) 78%, transparent);
-  background:
-    linear-gradient(160deg, rgba(255, 255, 255, 0.72), rgba(255, 255, 255, 0.26)),
-    color-mix(in srgb, var(--surface-strong) 72%, transparent);
-}
-
-html[data-theme="dark"] .project-hero-panel {
-  background:
-    linear-gradient(160deg, rgba(39, 39, 42, 0.76), rgba(9, 9, 11, 0.32)),
-    color-mix(in srgb, var(--surface-strong) 72%, transparent);
-}
-
-.project-signal-line {
-  height: 0.65rem;
-  overflow: hidden;
-  border-radius: 999px;
-  background:
-    linear-gradient(
-      90deg,
-      transparent 0 8%,
-      var(--accent) 8% 24%,
-      transparent 24% 31%,
-      #38bdf8 31% 48%,
-      transparent 48% 56%,
-      #14b8a6 56% 80%,
-      transparent 80%
-    ),
-    color-mix(in srgb, var(--fg) 8%, transparent);
-  opacity: 0.86;
-}
-
 .project-grid {
   position: relative;
 }
@@ -446,9 +348,12 @@ html[data-theme="dark"] .project-card:hover {
   transform: translateX(0);
 }
 
-.project-card-featured {
-  min-height: 22rem;
-  padding: clamp(1.25rem, 3vw, 2rem);
+.project-description,
+.project-impact {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
 
 .project-impact {
