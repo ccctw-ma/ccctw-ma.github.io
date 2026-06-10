@@ -2,6 +2,7 @@ import { describe, expect, it, vi } from "vitest";
 import {
   FALLBACK_PROJECTS,
   fetchOpenSourceProjects,
+  getSelectedProjects,
   normalizeRepo,
   selectOpenSourceRepos,
   type GitHubRepo,
@@ -44,6 +45,7 @@ describe("normalizeRepo", () => {
       language: "TypeScript",
       stars: 8,
       forks: 2,
+      visibility: "Public",
       topics: ["nextjs"],
     });
   });
@@ -62,6 +64,7 @@ describe("normalizeRepo", () => {
       description: "Open-source project by ccctw-ma.",
       homepage: undefined,
       language: "Code",
+      visibility: "Public",
       topics: [],
     });
   });
@@ -104,11 +107,11 @@ describe("fetchOpenSourceProjects", () => {
   it("fetches and normalizes repositories for the configured user", async () => {
     const fetcher = vi.fn().mockResolvedValue({
       ok: true,
-      json: async () => [makeRepo({ id: 7, name: "site", stargazers_count: 3 })],
+      json: async () => [makeRepo({ id: 7, name: "flamingo", stargazers_count: 3 })],
     } satisfies Partial<Response>);
 
     await expect(fetchOpenSourceProjects("ccctw-ma", fetcher)).resolves.toMatchObject([
-      { id: 7, name: "site", stars: 3 },
+      { id: 7, name: "flamingo", stars: 3 },
     ]);
     expect(fetcher).toHaveBeenCalledWith(
       "https://api.github.com/users/ccctw-ma/repos?per_page=100&sort=updated",
@@ -159,5 +162,17 @@ describe("fetchOpenSourceProjects", () => {
     await expect(fetchOpenSourceProjects("ccctw-ma", throwingFetch)).resolves.toBe(
       FALLBACK_PROJECTS,
     );
+  });
+});
+
+describe("getSelectedProjects", () => {
+  it("returns only the screenshot-selected projects in the required order", () => {
+    expect(getSelectedProjects().map((project) => project.name)).toEqual([
+      "GG-Fund",
+      "flamingo",
+      "clipy-rs",
+      "claude-code-2188",
+      "ccctw-music",
+    ]);
   });
 });

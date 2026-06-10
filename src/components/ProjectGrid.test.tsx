@@ -13,8 +13,12 @@ const projects: OpenSourceProject[] = [
     language: "TypeScript",
     stars: 12,
     forks: 3,
+    visibility: "Public",
+    license: "MIT License",
     topics: ["nextjs", "tailwind", "vitest", "github-pages", "mdx"],
     updatedAt: "2024-06-10T00:00:00Z",
+    updatedLabel: "Updated recently",
+    updatedLabelZh: "最近更新",
   },
 ];
 
@@ -26,10 +30,12 @@ describe("ProjectGrid", () => {
       "href",
       "https://github.com/ccctw-ma/ccctw-site",
     );
-    expect(screen.getByText("Personal website source code.")).toBeInTheDocument();
+    expect(screen.getAllByText("Personal website source code.")).toHaveLength(2);
     expect(screen.getByText("TypeScript")).toBeInTheDocument();
+    expect(screen.getByText("Public")).toBeInTheDocument();
+    expect(screen.getByText("MIT License")).toBeInTheDocument();
     expect(screen.getByLabelText("ccctw-site stars")).toHaveTextContent("Stars 12");
-    expect(screen.getByLabelText("ccctw-site forks")).toHaveTextContent("Forks 3");
+    expect(screen.getByText("Updated recently")).toBeInTheDocument();
     expect(screen.getByRole("link", { name: "Demo" })).toHaveAttribute(
       "href",
       "https://ccctw-ma.github.io",
@@ -44,7 +50,7 @@ describe("ProjectGrid", () => {
   it("renders an empty state when no projects are provided", () => {
     render(<ProjectGrid projects={[]} />);
 
-    expect(screen.getByText("No open-source projects found yet.")).toBeInTheDocument();
+    expect(screen.getByText("No selected projects yet.")).toBeInTheDocument();
   });
 
   it("omits optional topic and demo sections when project metadata is sparse", () => {

@@ -9,10 +9,7 @@ describe("Header", () => {
     expect(
       screen.getByRole("navigation", { name: "Main navigation" }),
     ).toBeInTheDocument();
-    expect(screen.getAllByRole("link", { name: "Blog" })[0]).toHaveAttribute(
-      "href",
-      "/blog",
-    );
+    expect(screen.queryByRole("link", { name: "Blog" })).not.toBeInTheDocument();
     expect(screen.getAllByRole("link", { name: "Projects" })[0]).toHaveAttribute(
       "href",
       "/projects",
@@ -28,5 +25,7 @@ describe("Header", () => {
       "href",
       "https://github.com/ccctw-ma",
     );
+    expect(screen.getAllByRole("button", { name: "Toggle language" })).toHaveLength(2);
+    expect(screen.getAllByRole("button", { name: "Toggle color theme" })).toHaveLength(2);
   });
 });

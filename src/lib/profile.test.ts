@@ -6,15 +6,12 @@ describe("profile content", () => {
     expect(PROFILE.handle).toBe("ccctw-ma");
     expect(PROFILE.githubUrl).toBe("https://github.com/ccctw-ma");
     expect(PROFILE.sourceUrl).toContain("ccctw-ma.github.io");
+    expect(PROFILE.intro).toContain("I am currently pursuing a Master's degree");
     expect(HIGHLIGHTS).toHaveLength(4);
-    expect(SOCIAL_LINKS.map((link) => link.label)).toEqual([
-      "GitHub",
-      "Blog",
-      "Projects",
-    ]);
+    expect(SOCIAL_LINKS.map((link) => link.label)).toEqual(["GitHub", "Projects"]);
     expect(BIO_TIMELINE.at(-1)).toMatchObject({
       year: "Now",
-      href: PROFILE.githubUrl,
+      href: "http://www.bupt.edu.cn/",
     });
   });
 });

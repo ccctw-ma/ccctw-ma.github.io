@@ -18,46 +18,107 @@ export type OpenSourceProject = {
   id: number;
   name: string;
   description: string;
+  descriptionZh?: string;
   url: string;
   homepage?: string;
   language: string;
   stars: number;
   forks: number;
+  visibility: "Public" | "Private";
+  license?: string;
   topics: string[];
   updatedAt: string;
+  updatedLabel: string;
+  updatedLabelZh: string;
 };
 
 type FetchLike = (input: string, init?: RequestInit) => Promise<Response>;
 
 export const GITHUB_USERNAME = "ccctw-ma";
 
-export const FALLBACK_PROJECTS: OpenSourceProject[] = [
+export const SELECTED_PROJECTS: OpenSourceProject[] = [
   {
     id: 1,
-    name: "50projects-react-ts",
-    description:
-      "React and TypeScript practice collection focused on UI interaction patterns.",
-    url: "https://github.com/ccctw-ma/50projects-react-ts",
-    homepage: "https://50projects-react-ts.vercel.app/",
+    name: "GG-Fund",
+    description: "my quantitative strategy",
+    descriptionZh: "我的量化策略项目",
+    url: "https://github.com/ccctw-ma/GG-Fund",
     language: "TypeScript",
-    stars: 0,
+    stars: 1,
     forks: 0,
-    topics: ["react", "typescript", "frontend"],
-    updatedAt: "2024-01-01T00:00:00Z",
+    visibility: "Private",
+    license: "MIT License",
+    topics: ["quant", "strategy"],
+    updatedAt: "2026-06-10T00:00:00Z",
+    updatedLabel: "Updated 1 hour ago",
+    updatedLabelZh: "1 小时前更新",
   },
   {
     id: 2,
-    name: "RN-collect-timestamps",
-    description:
-      "React Native Android app for collecting, processing, and sending timestamps.",
-    url: "https://github.com/ccctw-ma/RN-collect-timestamps",
+    name: "flamingo",
+    description: "chrome proxy extension",
+    descriptionZh: "Chrome 代理扩展",
+    url: "https://github.com/ccctw-ma/flamingo",
+    language: "TypeScript",
+    stars: 1,
+    forks: 0,
+    visibility: "Public",
+    license: "MIT License",
+    topics: ["chrome", "proxy", "extension"],
+    updatedAt: "2026-06-09T00:00:00Z",
+    updatedLabel: "Updated yesterday",
+    updatedLabelZh: "昨天更新",
+  },
+  {
+    id: 3,
+    name: "clipy-rs",
+    description: "clipy-rs",
+    descriptionZh: "clipy-rs",
+    url: "https://github.com/ccctw-ma/clipy-rs",
+    language: "Rust",
+    stars: 1,
+    forks: 0,
+    visibility: "Public",
+    license: "MIT License",
+    topics: ["rust", "clipboard"],
+    updatedAt: "2026-06-07T00:00:00Z",
+    updatedLabel: "Updated 3 days ago",
+    updatedLabelZh: "3 天前更新",
+  },
+  {
+    id: 4,
+    name: "claude-code-2188",
+    description: "复刻claude-code 源码",
+    descriptionZh: "复刻 claude-code 源码",
+    url: "https://github.com/ccctw-ma/claude-code-2188",
     language: "TypeScript",
     stars: 0,
     forks: 0,
-    topics: ["react-native", "android", "timestamp"],
-    updatedAt: "2024-01-01T00:00:00Z",
+    visibility: "Public",
+    license: "MIT License",
+    topics: ["claude-code", "agent"],
+    updatedAt: "2026-06-06T00:00:00Z",
+    updatedLabel: "Updated recently",
+    updatedLabelZh: "最近更新",
+  },
+  {
+    id: 5,
+    name: "ccctw-music",
+    description: "A music website can obtain music resources from various platforms.",
+    descriptionZh: "一个可从多个平台获取音乐资源的音乐网站。",
+    url: "https://github.com/ccctw-ma/ccctw-music",
+    language: "JavaScript",
+    stars: 0,
+    forks: 0,
+    visibility: "Public",
+    topics: ["music", "javascript"],
+    updatedAt: "2023-05-16T00:00:00Z",
+    updatedLabel: "Updated on May 16, 2023",
+    updatedLabelZh: "更新于 2023 年 5 月 16 日",
   },
 ];
+
+export const FALLBACK_PROJECTS = SELECTED_PROJECTS;
 
 export function normalizeRepo(repo: GitHubRepo): OpenSourceProject {
   return {
@@ -69,8 +130,11 @@ export function normalizeRepo(repo: GitHubRepo): OpenSourceProject {
     language: repo.language || "Code",
     stars: repo.stargazers_count,
     forks: repo.forks_count,
+    visibility: "Public",
     topics: repo.topics ?? [],
     updatedAt: repo.pushed_at,
+    updatedLabel: `Updated ${new Date(repo.pushed_at).toLocaleDateString("en")}`,
+    updatedLabelZh: `更新于 ${new Date(repo.pushed_at).toLocaleDateString("zh-CN")}`,
   };
 }
 
@@ -112,9 +176,15 @@ export async function fetchOpenSourceProjects(
     }
 
     const repos = (await response.json()) as GitHubRepo[];
-    const projects = selectOpenSourceRepos(repos);
-    return projects.length > 0 ? projects : FALLBACK_PROJECTS;
+    const projects = selectOpenSourceRepos(repos).filter((project) =>
+      SELECTED_PROJECTS.some((selected) => selected.name === project.name),
+    );
+    return projects.length > 0 ? projects : SELECTED_PROJECTS;
   } catch {
-    return FALLBACK_PROJECTS;
+    return SELECTED_PROJECTS;
   }
+}
+
+export function getSelectedProjects(): OpenSourceProject[] {
+  return SELECTED_PROJECTS;
 }

@@ -4,4 +4,21 @@ import { afterEach } from "vitest";
 
 afterEach(() => {
   cleanup();
+  window.localStorage.clear();
+  document.documentElement.dataset.lang = "en";
+  document.documentElement.dataset.theme = "dark";
+});
+
+Object.defineProperty(window, "matchMedia", {
+  writable: true,
+  value: (query: string) => ({
+    matches: false,
+    media: query,
+    onchange: null,
+    addListener: () => undefined,
+    removeListener: () => undefined,
+    addEventListener: () => undefined,
+    removeEventListener: () => undefined,
+    dispatchEvent: () => false,
+  }),
 });
