@@ -7,6 +7,7 @@ afterEach(() => {
   window.localStorage.clear();
   document.documentElement.dataset.lang = "en";
   document.documentElement.dataset.theme = "light";
+  document.documentElement.classList.remove("page-transition-out");
 });
 
 Object.defineProperty(window, "matchMedia", {

@@ -1,9 +1,7 @@
 import Link from "next/link";
-import { IoHome, IoLayersSharp, IoLogoGithub } from "react-icons/io5/index.js";
+import { IoHome, IoLogoGithub } from "react-icons/io5/index.js";
 import { PROFILE } from "@/lib/profile";
 import PreferenceControls from "./PreferenceControls";
-
-const navItems = [{ labelEn: "Projects", labelZh: "项目", href: "/projects" }];
 
 export default function Header() {
   return (
@@ -19,19 +17,6 @@ export default function Header() {
           >
             Ccctw Ma
           </Link>
-          <div className="flex-1" />
-          <div className="flex items-center gap-2">
-            {navItems.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="text-muted hover:text-accent rounded-full px-3 py-2 text-sm font-bold hover:bg-black/5 dark:hover:bg-white/5"
-              >
-                <span className="i18n-en">{item.labelEn}</span>
-                <span className="i18n-zh">{item.labelZh}</span>
-              </Link>
-            ))}
-          </div>
           <div className="flex-1" />
           <a
             href={PROFILE.sourceUrl}
@@ -51,9 +36,6 @@ export default function Header() {
           <div className="flex gap-5 text-main">
             <Link href="/" aria-label="Home">
               <IoHome />
-            </Link>
-            <Link href="/projects" aria-label="Projects">
-              <IoLayersSharp />
             </Link>
           </div>
           <div className="flex items-center gap-4">

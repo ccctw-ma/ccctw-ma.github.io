@@ -10,10 +10,7 @@ describe("Header", () => {
       screen.getByRole("navigation", { name: "Main navigation" }),
     ).toBeInTheDocument();
     expect(screen.queryByRole("link", { name: "Blog" })).not.toBeInTheDocument();
-    expect(screen.getAllByRole("link", { name: "Projects" })[0]).toHaveAttribute(
-      "href",
-      "/projects",
-    );
+    expect(screen.queryByRole("link", { name: "Projects" })).not.toBeInTheDocument();
     expect(screen.getByRole("link", { name: "Source" })).toHaveAttribute(
       "href",
       "https://github.com/ccctw-ma/ccctw-ma.github.io",
