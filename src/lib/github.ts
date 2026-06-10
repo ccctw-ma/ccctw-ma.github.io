@@ -45,8 +45,8 @@ export const SELECTED_PROJECTS: OpenSourceProject[] = [
   {
     id: 1,
     name: "GG-Fund",
-    description: "my quantitative strategy",
-    descriptionZh: "我的量化策略项目",
+    description: "A private quantitative research workspace for strategy experiments.",
+    descriptionZh: "用于策略实验的私有量化研究工作台。",
     url: "https://github.com/ccctw-ma/GG-Fund",
     language: "TypeScript",
     stars: 1,
@@ -61,8 +61,8 @@ export const SELECTED_PROJECTS: OpenSourceProject[] = [
   {
     id: 2,
     name: "flamingo",
-    description: "chrome proxy extension",
-    descriptionZh: "Chrome 代理扩展",
+    description: "A browser extension for lightweight Chrome proxy switching.",
+    descriptionZh: "用于轻量化 Chrome 代理切换的浏览器扩展。",
     url: "https://github.com/ccctw-ma/flamingo",
     language: "TypeScript",
     stars: 1,
@@ -77,8 +77,8 @@ export const SELECTED_PROJECTS: OpenSourceProject[] = [
   {
     id: 3,
     name: "clipy-rs",
-    description: "clipy-rs",
-    descriptionZh: "clipy-rs",
+    description: "A Rust utility experiment around clipboard productivity.",
+    descriptionZh: "围绕剪贴板效率构建的 Rust 工具实验。",
     url: "https://github.com/ccctw-ma/clipy-rs",
     language: "Rust",
     stars: 1,
@@ -93,7 +93,7 @@ export const SELECTED_PROJECTS: OpenSourceProject[] = [
   {
     id: 4,
     name: "claude-code-2188",
-    description: "复刻claude-code 源码",
+    description: "A source reconstruction study of claude-code style agent workflows.",
     descriptionZh: "复刻 claude-code 源码",
     url: "https://github.com/ccctw-ma/claude-code-2188",
     language: "TypeScript",

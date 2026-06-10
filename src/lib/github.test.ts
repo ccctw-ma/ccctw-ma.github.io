@@ -207,7 +207,7 @@ describe("fetchLatestSelectedProjects", () => {
     expect(latestProjects[1]).toMatchObject({
       name: "flamingo",
       description: "Fresh description",
-      descriptionZh: "Chrome 代理扩展",
+      descriptionZh: "用于轻量化 Chrome 代理切换的浏览器扩展。",
       language: "Rust",
       stars: 42,
       license: "MIT",
